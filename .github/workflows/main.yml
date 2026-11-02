@@ -1,0 +1,17 @@
+name: Main CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run test script
+        run: |
+          chmod +x check.sh || true
+          ./check.sh
