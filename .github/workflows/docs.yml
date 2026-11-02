@@ -1,0 +1,20 @@
+name: Documentation Build
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Автоматическая генерация документации
+        run: |
+          mkdir -p out_docs
+          echo "=== АВТОМАТИЧЕСКИ СГЕНЕРИРОВАННАЯ ДОКУМЕНТАЦИЯ ===" > out_docs/manual.txt
+          cat docs/guide.md >> out_docs/manual.txt
+          echo "Сборка завершена для коммита: $GITHUB_SHA" >> out_docs/manual.txt
+          cat out_docs/manual.txt
